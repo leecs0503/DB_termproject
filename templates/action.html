@@ -11,17 +11,68 @@
 <body>
     <div style="display:{{ admin_display }}">
         Admin function
-        <form type action=" /register" method="post">
-            <input type="submit" name="users info" value="users_info">
-            <input type="submit" name="trades info" value="trade_info">
+        <form type action="/admin_func" method="post">
+            <input type="submit" name="send" value="users_info">
+            <input type="submit" name="send" value="trades_info">
         </form>
         ============================================================================ <br />
     </div>
-    current user: {{id}}
-    <form action="/logout" method="post">
-        <input type="submit" name="logout" value="logout">
-    </form>
 
+    <table border="1">
+        <thead>
+            <th>popular category</th>
+            <th>best buyer</th>
+            <th>best seller</th>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>{{popular_category}}</td>
+                <td>{{best_buyer}}</td>
+                <td>{{best_seller}}</td>
+            </tr>
+        </tbody>
+    </table>
+    current user: {{id}} /
+    <form action="/logout" method="post" style="display: inline;">
+        <input type="submit" name="send" value="logout">
+    </form> <br />
+    balance: {{balance}} <br />
+    rating: {{rating}} <br />
+
+    ITEMS
+
+    <form action="/item_add" method="post">
+        <input type="submit" name="trades" value="add">
+    </form>
+    <table border="1">
+        <thead>
+            <th>code</th>
+            <th>name</th>
+            <th>price</th>
+            <th>stock</th>
+            <th>seller</th>
+            <th></th>
+        </thead>
+
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>{{item[4]}}</td>
+                <td>
+                    <form action="/item_buy" method="post">
+                        <input type="hidden" name="id" value={{item[0]}}>
+                        <input type="submit" name="buy" value="buy">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 
 

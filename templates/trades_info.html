@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>user_info</title>
+</head>
+
+<body>
+    <table border="1">
+        <thead>
+            <th>buyer</th>
+            <th>seller</th>
+            <th>code</th>
+            <th>tradeprice</th>
+        </thead>
+
+        <tbody>
+            {% for trade in trades %}
+            <tr>
+                <td>{{ trade[0] }}</td>
+                <td>{{ trade[1] }}</td>
+                <td>{{ trade[2] }}</td>
+                <td>{{ trade[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+
+</html>
